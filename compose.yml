@@ -1,0 +1,14 @@
+version: "3"
+services:
+  linux:
+    build: .
+    restart: unless-stopped
+    volumes:
+      - ./create_memory_files.sh:/code/create_memory_files.sh
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+    memswap_limit: 2G
+    mem_swappiness: 60
+    entrypoint: sleep infinity
