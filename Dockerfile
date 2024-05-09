@@ -1,9 +1,9 @@
 FROM alpine as build
 RUN apk add --no-cache build-base
 WORKDIR /app
-COPY ./mem.c /app/mem.c
-RUN gcc -static -o hold_memory mem.c
+COPY ./memory_hold.c /app/memory_hold.c
+RUN gcc -static -o memory_hold memory_hold.c
 
 FROM scratch
-COPY --from=build /app/hold_memory /hold_memory
-CMD ["/hold_memory"]
+COPY --from=build /app/memory_hold /memory_hold
+ENTRYPOINT ["/memory_hold"]
