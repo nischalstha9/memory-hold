@@ -6,4 +6,4 @@ RUN gcc -o hold_memory mem.c
 
 FROM scratch
 COPY --from=build /app/hold_memory /hold_memory
-ENTRYPOINT ["/hold_memory"]
+CMD ["/hold_memory"]
