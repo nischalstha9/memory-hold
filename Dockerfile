@@ -5,6 +5,7 @@ COPY ./mem.c /app/mem.c
 RUN gcc -o hold_memory mem.c
 
 FROM scratch
-COPY --from=build /app/hold_memory /app/hold_memory
+RUN mkdir =p /app
 WORKDIR /app
+COPY --from=build /app/hold_memory /app/hold_memory
 ENTRYPOINT ["/app/hold_memory"]
